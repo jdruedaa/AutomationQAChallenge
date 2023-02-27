@@ -18,7 +18,7 @@ public class PostTests extends Hooks {
     public void SuccessfulStatusPostTest()
     {
         LogInPage logInPage = new LogInPage(driver);
-        String username = System.getenv("FB_Username");
+        String username = System.getenv("FB_Email");
         String password = System.getenv("FB_Password");
         HomePage homePage = logInPage.logInToUserAccount(username, password);
         ProfilePage profilePage = homePage.goToProfilePage();
