@@ -27,7 +27,7 @@ public class ReviewCreationPage extends BasePage {
     public ConfirmReviewPage writeAReview(String review)
     {
         WebDriverWait explicitWait = new WebDriverWait(driver,Duration.ofSeconds(15));
-        WebElement policyDropDownMenuWE = explicitWait.until(ExpectedConditions.elementToBeClickable(policyDropDownMenu));
+        WebElement policyDropDownMenuWE = explicitWait.until(ExpectedConditions.presenceOfElementLocated(policyDropDownMenu));
         policyDropDownMenuWE.click();
         explicitWait.until(ExpectedConditions.attributeToBe(policyDropDownMenuWE,"aria-expanded","true"));
         List<WebElement> policyOptionsWEs = driver.findElements(By.cssSelector(".md-write-a-review [role=\"option\"]"));

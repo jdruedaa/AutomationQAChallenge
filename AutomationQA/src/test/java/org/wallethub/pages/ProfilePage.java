@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProfilePage extends BasePage {
 
@@ -27,15 +28,8 @@ public class ProfilePage extends BasePage {
         WebElement fourthStarReviewButtonWE = explicitWait.until(ExpectedConditions.presenceOfElementLocated(fourthStarReviewButton));
         new Actions(driver)
                 .scrollToElement(fourthStarReviewButtonWE);
-        try
-        {
-            fourthStarReviewButtonWE.click();
-        }
-        catch (StaleElementReferenceException e)
-        {
-            fourthStarReviewButtonWE = explicitWait.until(ExpectedConditions.elementToBeClickable(fourthStarReviewButton));
-            fourthStarReviewButtonWE.click();
-        }
+        fourthStarReviewButtonWE = explicitWait.until(ExpectedConditions.elementToBeClickable(fourthStarReviewButton));
+        fourthStarReviewButtonWE.click();
         //Color fillColor = Color.fromString(fourthStarReviewButtonWE.findElements(By.cssSelector("path")).get(0).getCssValue("fill"));
         //System.out.println(fillColor.toString());
         return new ReviewCreationPage(driver);
@@ -53,13 +47,9 @@ public class ProfilePage extends BasePage {
         boolean userReviewed = false;
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(15));
         List<WebElement> reviewUsersWEs = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(reviewUsers));
-        for(WebElement user : reviewUsersWEs)
+        if(reviewUsersWEs.get(0).getText().contains(username))
         {
-            if(user.getText().contains(username))
-            {
-                userReviewed = true;
-                break;
-            }
+            userReviewed = true;
         }
         return userReviewed;
     }
