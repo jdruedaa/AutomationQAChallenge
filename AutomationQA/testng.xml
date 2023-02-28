@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Challenge tests" parallel="tests">
+<suite name="Challenge tests">
     <test name="Facebook Post">
         <classes>
             <class name="org.facebook.tests.post.PostTests"/>
+        </classes>
+    </test>
+    <test name="WalletHub Review">
+        <classes>
+            <class name="org.wallethub.tests.review.ReviewTests"/>
         </classes>
     </test>
 </suite>
